@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF Text Coordinate Extractor</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">PDF TOOLKIT</p>
+      <h1>PDF 文字座標擷取器</h1>
+      <p class="subtitle">擷取文字、定位文字框，並取得四個角落的座標。</p>
+    </div>
+    <label class="upload-button" for="pdfInput">選擇 PDF</label>
+    <input id="pdfInput" type="file" accept="application/pdf,.pdf" hidden>
+  </header>
+
+  <main class="workspace">
+    <section class="document-panel">
+      <div class="panel-heading">
+        <h2>文件預覽</h2>
+        <div class="page-controls">
+          <button id="prevPage" disabled>上一頁</button>
+          <span id="pageIndicator">尚未載入</span>
+          <button id="nextPage" disabled>下一頁</button>
+        </div>
+      </div>
+      <div id="emptyState" class="empty-state">
+        <div class="empty-icon">PDF</div>
+        <h3>上傳文字型 PDF 開始使用</h3>
+        <p>選擇 PDF 後，系統會擷取文字及其頁面座標。</p>
+      </div>
+      <div id="pdfStage" class="pdf-stage" hidden>
+        <canvas id="pdfCanvas"></canvas>
+        <div id="overlay" class="overlay"></div>
+      </div>
+      <p id="status" class="status" role="status">等待上傳 PDF</p>
+    </section>
+
+    <aside class="details-panel">
+      <div class="panel-heading">
+        <h2>文字與座標</h2>
+        <button id="exportJson" disabled>匯出 JSON</button>
+      </div>
+      <div id="detailsEmpty" class="details-empty">上傳 PDF 後，擷取結果會顯示在這裡。</div>
+      <div id="details" hidden>
+        <p class="result-count" id="resultCount"></p>
+        <div id="itemsList" class="items-list"></div>
+        <section class="coordinate-card">
+          <h3>選取項目座標</h3>
+          <pre id="coordinateOutput">請點選一個文字框</pre>
+        </section>
+      </div>
+    </aside>
+  </main>
+  <script type="module" src="./js/app.js"></script>
+</body>
+</html>
